@@ -1,0 +1,152 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Repositorio base para una API REST.",
+    "description": "Éste es un repositorio de base para crear nuevas APIs REST.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "villanuevajoaquin94@gmail.com"
+    }
+  },
+
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1",
+      "description": "Desarrollo"
+    },
+    {
+      "url": "https://api-rest-curso-fer.herokuapp.com/api/v1",
+      "description": "Producción"
+    }
+  ],
+  "tags": [
+    {
+      "name": "usuarios",
+      "description": "Operaciones CRUD sobre los usuarios."
+    }
+  ],
+  "paths": {
+    "/usuarios/": {
+      "get": {
+        "tags": ["usuarios"],
+        "summary": "Obtener una lista de los usuarios existentes.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "El array de usuarios está en formato JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Usuario"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["usuarios"],
+        "summary": "Crear un nuevo usuario.",
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario creado."
+          }
+        }
+      }
+    },
+    "/usuarios/{id}": {
+      "put": {
+        "tags": ["usuarios"],
+        "summary": "Actualizar un usuario existente mediante el ID.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "El ID del usuario que necesita ser actualizado.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "El usuario se actualizó",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["usuarios"],
+        "summary": "Eliminar un usuario mediante el ID.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "El ID del usuario que necesita ser eliminado.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario eliminado."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Usuario": {
+        "required": ["id"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "El ID del usuario.",
+            "type": "integer",
+            "example": "3"
+          },
+          "name": {
+            "description": "El nombre del usuario.",
+            "type": "string",
+            "example": "Joaquín"
+          }
+        }
+      }
+    }
+  }
+}

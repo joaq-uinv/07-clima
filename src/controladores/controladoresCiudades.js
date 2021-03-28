@@ -8,10 +8,14 @@ const { buscarCiudad } = require("../servicios/serviciosCiudad");
  * @param {express.Request} res
  */
 
-const ciudades = async (req, res) => {
-  const ciudades = await buscarCiudad(req.params.ciudad);
-  const exito = new Exito(ciudades);
-  res.json(exito);
+const ciudades = async (req, res, next) => {
+  try {
+    const ciudades = await buscarCiudad(req.params.ciudad);
+    const exito = new Exito(ciudades);
+    res.json(exito);
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = { ciudades };

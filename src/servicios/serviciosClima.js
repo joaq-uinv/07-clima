@@ -19,12 +19,12 @@ const buscarClima = async (lon, lat) => {
 
 const climaPorIDCiudad = async (ciudad, id) => {
   const ciudades = await repositorioCiudad.buscarCiudades(ciudad);
-  const ciudadesFiltradasPorID = ciudades.features.filter(
+  const ciudadesFiltradasPorID = ciudades.features.find(
     (city) => city.id === id
   );
   return repositorioClima.climaPorCoordenadas(
-    ciudadesFiltradasPorID[0].geometry.coordinates[0],
-    ciudadesFiltradasPorID[0].geometry.coordinates[1]
+    ciudadesFiltradasPorID.geometry.coordinates[0],
+    ciudadesFiltradasPorID.geometry.coordinates[1]
   );
 };
 

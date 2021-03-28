@@ -1,11 +1,9 @@
-//!configuracion de express
-
 const express = require("express");
 const morgan = require("morgan");
 const swaggerUI = require("swagger-ui-express");
 const JSONSwagger = require("../swagger/swagger.json");
 const config = require("../../config/indexConfig");
-const logger = require("../logger/index");
+const logger = require("../logger/indexLogger");
 class ServerExpress {
   constructor() {
     this.app = express();
@@ -22,14 +20,13 @@ class ServerExpress {
     this.app.use(morgan("tiny"));
   }
 
-  //!hecho lo especificado en el comentario de /rutas/usuarios
   _rutas() {
-    //p/ ver si aplicacion esta andando; suele usarse en empresas, en las que el area de infraestructura -manejan los svs- necesita que se le haga una peticion a la api p/corroborar que la aplicacion este andando
     this.app.head("/status", (req, res) => res.status(200).end());
 
+    this.app.use(`${config.api.prefix}`, require("../../rutas/rutasClima"));
     this.app.use(
-      `${config.api.prefix}/usuarios`, //?poner prefijo /api/v1
-      require("../../rutas/usuarios")
+      `${config.api.prefix}/ciudades`,
+      require("../../rutas/rutasCiudades")
     );
   }
 
@@ -73,5 +70,4 @@ class ServerExpress {
   }
 }
 
-//!las clases deben exportarse s/ estar e/ llaves
 module.exports = ServerExpress;

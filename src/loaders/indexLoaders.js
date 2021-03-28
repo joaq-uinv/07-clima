@@ -1,8 +1,6 @@
-//!archivo en el que se va a instanciar express
-
 const ServerExpress = require("./server/ServerExpress");
 const config = require("../config/indexConfig");
-const logger = require("./logger/index");
+const logger = require("./logger/indexLogger");
 
 const empezar = async () => {
   const sv = new ServerExpress();

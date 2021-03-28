@@ -1,5 +1,3 @@
-//un logger es un archivo que registra eventos o msjs e/ != usuarios que suceden en un programa. se importa en todos los archivos donde haya un console.log y se reemplaza esas lineas por el logger
-
 const winston = require("winston");
 const config = require("../../config/indexConfig");
 

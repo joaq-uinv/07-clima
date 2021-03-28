@@ -1,5 +1,3 @@
-//!archivo donde se encuentrar las configuraciones del sv. gralmente se obtenien del archivo .env
-
 const dotenv = require("dotenv");
 const envEncontrado = dotenv.config();
 
@@ -8,7 +6,15 @@ process.env.NODE_ENV = process.env.NODE_ENV || "desarrollo";
 
 module.exports = {
   puerto: process.env.PUERTO,
-  api: { prefix: "/api/v1" }, //!se va a querer que este prefijo este en todas las rutas de la aplicacion
+  api: { prefix: "/api/v1" },
   log: { level: process.env.LOG_LEVEL },
   swagger: { ruta: "/docs" },
+  mapbox: {
+    rutaBase: "https://api.mapbox.com/geocoding/v5/mapbox.places/",
+    CLAVE_API: process.env.CLAVE_API_MAPBOX,
+  },
+  openWeatherMap: {
+    rutaBase: "https://api.openweathermap.org/data/2.5/weather",
+    CLAVE_API: process.env.CLAVE_API_OPENWEATHERMAP,
+  },
 };

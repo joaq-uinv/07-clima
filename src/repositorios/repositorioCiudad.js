@@ -11,7 +11,6 @@ class RepositorioCiudad {
   }
 
   async buscarCiudades(ciudad) {
-    throw new Error("Error de prueba");
     try {
       const instance = axios.create({
         baseURL: `${this.rutaBase}${ciudad}.json`,

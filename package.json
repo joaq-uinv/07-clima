@@ -1,7 +1,7 @@
 {
   "name": "07-clima",
-  "version": "0.0.1",
-  "description": "",
+  "version": "1.0.0",
+  "description": "API para obtener el clima de diferentes ciudades",
   "main": "index.js",
   "scripts": {
     "dev": "npx nodemon src",
